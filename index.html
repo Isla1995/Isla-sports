@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d12">
+  <title>Isla Sports</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header><div class="brand"><span class="mark">IS</span><div><b>ISLA SPORTS</b><small>Predicciones · puntos ficticios</small></div></div><button id="signOut" class="ghost hidden">Salir</button></header>
+  <main>
+    <section id="authPanel" class="panel">
+      <p class="eyebrow">BIENVENIDO</p><h1>Juega con tus pronósticos.</h1>
+      <p class="muted">Acceso privado · sin dinero real ni premios en efectivo.</p>
+      <div class="tabs"><button id="tabLogin" class="active">Entrar</button><button id="tabSignup">Crear cuenta</button></div>
+      <form id="authForm">
+        <label>Correo electrónico<input id="email" type="email" autocomplete="email" required placeholder="tu@email.com"></label>
+        <label>Contraseña<input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="Mínimo 6 caracteres"></label>
+        <label id="usernameWrap" class="hidden">Nombre de usuario<input id="username" maxlength="24" placeholder="Tu nombre"></label>
+        <button class="primary" type="submit" id="authSubmit">Entrar</button>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+    </section>
+
+    <section id="appPanel" class="hidden">
+      <div class="welcome"><div><p class="eyebrow">TU CUENTA</p><h1>Hola, <span id="helloName">jugador</span></h1></div><div class="points"><small>TUS PUNTOS</small><strong id="points">—</strong></div></div>
+      <div id="adminPanel" class="panel hidden">
+        <p class="eyebrow">ADMINISTRACIÓN</p><h2>Publicar partido</h2>
+        <form id="matchForm" class="formGrid">
+          <label>Deporte<input id="sport" required placeholder="MLB, NBA, fútbol…"></label>
+          <label>Equipo local<input id="home" required placeholder="Equipo A"></label>
+          <label>Equipo visitante<input id="away" required placeholder="Equipo B"></label>
+          <label>Fecha y hora<input id="starts" type="datetime-local" required></label>
+          <label>Cuota local<input id="oddsHome" type="number" step="0.01" min="1.01" required value="1.90"></label>
+          <label>Cuota empate (opcional)<input id="oddsDraw" type="number" step="0.01" min="1.01" placeholder="Dejar vacío si no aplica"></label>
+          <label>Cuota visitante<input id="oddsAway" type="number" step="0.01" min="1.01" required value="1.90"></label>
+          <button class="primary full" type="submit">Publicar partido</button>
+        </form><p id="adminMessage" class="message"></p>
+      </div>
+      <div class="sectionHead"><div><p class="eyebrow">EN CARTELERA</p><h2>Partidos disponibles</h2></div><button id="refresh" class="ghost">Actualizar</button></div>
+      <p id="matchesMessage" class="message"></p><div id="matches" class="matches"></div>
+      <div class="panel"><h2>Mis pronósticos</h2><p id="picksMessage" class="muted">Los pronósticos aparecerán aquí cuando la tabla picks esté configurada correctamente.</p><div id="myPicks"></div></div>
+    </section>
+    <footer>ISLA SPORTS <span>·</span> Solo puntos ficticios. No se mueve dinero real.</footer>
+  </main>
+</body>
+</html>
